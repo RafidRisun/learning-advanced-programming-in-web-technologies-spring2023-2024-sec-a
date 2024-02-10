@@ -1,13 +1,54 @@
-//teacher course create, student enroll, teacher can view the students
-//enrolled in the course, student can view who is taking the course
-class Student{
-    
-    constructor(name: string, id: string, course: string) {
-        let name: string = name;
-        let id: string = id;
-        let course: string = course;
+class Teacer{
+    tname: string;
+    tcourses: Course[];
+    constructor(name:string){
+        this.tname = name;
+        this.tcourses = [];
     }
-    enroll(): void{
-        console.log(`${this.name} enrolled for course ${this.course}`)
+
+    createTcourse(courseName: string): void{
+        const newCourse = new Course(courseName, this.tname);
+        this.tcourses.push(newCourse);
+        console.log(`${newCourse} Added by ${this.tname}`);
+    }
+
+    viewStudents(courseName: string): void{
+        
+
+    }
+
+}
+
+class Student{
+    sname: string;
+    scourse: string;
+
+    constructor(name:string, course: string){
+        this.sname = name;
+        this.scourse = course;
+    }
+
+    viewTeacher(courseName: string): void{
+
+    }
+
+    enroll(courseName: string): void{
+        
+    }
+}
+
+class Course{
+    cname: string;
+    teacher: string;
+    students: string[];
+
+    constructor(name: string, teacher: string){
+        this.cname = name;
+        this.teacher = teacher;
+        this.students = [];
+    }
+
+    addStudent(courseName: string, student:string):void{
+
     }
 }
