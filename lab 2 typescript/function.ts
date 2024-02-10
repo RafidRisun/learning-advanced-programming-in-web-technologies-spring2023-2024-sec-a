@@ -26,5 +26,9 @@ function add3(...nums: number[]): number{
 }
 
 //overloading
-
-//noUnused paramet
+function addnumbers4(a: number, b: number):number;
+function addnumbers4(a: string, b: string):string;
+function addnumbers4(a: any, b: any):any{
+    return a+b;
+}
+console.log(addnumbers4(10, 20));
