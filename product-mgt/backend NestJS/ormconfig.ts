@@ -5,7 +5,7 @@ import { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConne
 
 const config: PostgresConnectionOptions = {
     type: 'postgres',
-    database: 'Product-mgt',
+    database: 'product-mgt',
     host: 'localhost',
     port: 5432,
     username: 'postgres',

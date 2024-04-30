@@ -1,6 +1,8 @@
+import { Product } from 'src/product/entities/product.entity';
 import {
     Column,
     Entity,
+    OneToMany,
     PrimaryGeneratedColumn,
   } from 'typeorm';
 
@@ -24,6 +26,10 @@ import {
   
     @Column()
     confirmPassword: string;
+
+    @OneToMany(() => Product, product => product.user)
+    product: Product;
+
   
   }
   
