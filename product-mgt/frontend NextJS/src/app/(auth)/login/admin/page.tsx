@@ -1,20 +1,50 @@
-import { useRouter } from "next/router"
+import { useState } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
-export default function AdminLogin() {
-  const router = useRouter();
+const LoginPage = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
 
-  const admin = () => {
-    router.push("/admin");
-  }
+    const router = useRouter();
 
-  return (
-    <div>
-        <h1>Admin Login Page</h1><br/>
-        <h3>User Name:</h3>
-        <input type="text" id="username"></input><br/>
-        <h3>Password</h3>
-        <input type="password" id="password"></input><br/>
-        <input type="button" onClick={admin}>Login</input>
-    </div>
-  )
-}
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('http://localhost:3001/admin/auth/login', formData);
+            console.log('Login successful:', response.data);
+            router.push('/admin');
+        } catch (error) {
+            console.error('Error', error);
+        }
+    };
+
+    return (
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} />
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    );
+};
+
+export default LoginPage;
