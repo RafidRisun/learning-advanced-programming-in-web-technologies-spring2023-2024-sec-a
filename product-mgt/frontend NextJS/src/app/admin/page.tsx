@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 interface Product {
-  id: number;
+  id: any;
   pname: string;
   description: string;
 }
