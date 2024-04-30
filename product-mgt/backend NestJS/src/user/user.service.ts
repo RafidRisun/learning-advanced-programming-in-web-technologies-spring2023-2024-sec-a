@@ -13,8 +13,8 @@ export class UserService {
   ){}
 
   create(createUserDto: CreateUserDto) {
-    const userloyee = this.userRepo.create({ ...createUserDto });
-    return this.userRepo.save(userloyee);
+    const user = this.userRepo.create({ ...createUserDto });
+    return this.userRepo.save(user);
   }
   
 
